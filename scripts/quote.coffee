@@ -24,9 +24,9 @@ module.exports = (robot) ->
     msg.http('http://www.iheartquotes.com/api/v1/random')
       .query(params)
       .get() (err, res, body) ->
-        if err or res.status != 200
-				  msg.send 'Quote failed. :('
-			  else
+        if err or res.statusCode != 200
+          msg.send 'Quote failed. :('
+        else
           body = body.replace(/\s*\[\w+\]\s*http:\/\/iheartquotes.*\s*$/m, '')
           body = body.replace(/&quot;/g, "'")
           msg.send body
